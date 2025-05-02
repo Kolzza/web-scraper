@@ -18,12 +18,10 @@ class WebScraper(scrapy.Spider):
             text = link.css('::text').get()
             href = link.css('::attr(href)').get()
             if text and href:
-                self._queue.append(href)
                 yield {
                     'text': text,
                     'href': response.urljoin(href)  
                 }  
-
             
         
         

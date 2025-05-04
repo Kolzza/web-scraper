@@ -4,7 +4,8 @@ from scrapy.utils.project import get_project_settings
 import sys
 
 SPIDER_COUNT = 2
-
+LOGGING=False
+LOG_LEVEL="INFO"
 
 def get_arguments():
     try:
@@ -31,6 +32,8 @@ if __name__ == "__main__":
     seed_urls = split_list(read_seed_urls(seed_file), SPIDER_COUNT)
 
     settings = get_project_settings()
+    settings.set('LOG_ENABLED', LOGGING)
+    settings.set('LOG_LEVEL', LOG_LEVEL)
     settings.set('DEPTH_LIMIT', max_depth)
 
     process = CrawlerProcess(settings)

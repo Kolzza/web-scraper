@@ -1,4 +1,5 @@
 import scrapy
+import os
 
 class WebScraper(scrapy.Spider):
     name = "scraper"
@@ -13,8 +14,11 @@ class WebScraper(scrapy.Spider):
         for url in self.start_urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
-    def parse(self, response): 
-        filename = "scraped.txt"
+    def parse(self, response):
+        output_dir = "out"
+        os.makedirs(output_dir, exist_ok=True)
+
+        filename = os.path.join(output_dir, f"{self.name}_{response.url.split('/')[-1]}.html")
         with open(filename, 'wb') as f:
             f.write(response.body)
         self.log(f'Saved file {filename}')
@@ -32,7 +36,3 @@ class WebScraper(scrapy.Spider):
         while self._queue:
             next_url = self._queue.pop(0)
             yield scrapy.Request(url=next_url, callback=self.parse)
-
-
-        
-    

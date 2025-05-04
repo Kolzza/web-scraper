@@ -12,7 +12,8 @@ def main():
     settings = get_project_settings()
     settings.set('LOG_ENABLED', LOGGING)
     settings.set('LOG_LEVEL', LOG_LEVEL)
-    settings.set('DEPTH_LIMIT', max_depth)
+    settings.set('OUTPUT_DIR', output_dir)
+    settings.set('DEPTH_LIMIT', int(max_depth))
 
     process = CrawlerProcess(settings)
     for idx, url_list in enumerate(seed_urls):

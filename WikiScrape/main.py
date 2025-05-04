@@ -31,6 +31,8 @@ if __name__ == "__main__":
     seed_urls = split_list(read_seed_urls(seed_file), SPIDER_COUNT)
 
     settings = get_project_settings()
+    settings.set('DEPTH_LIMIT', max_depth)
+
     process = CrawlerProcess(settings)
     for idx, url_list in enumerate(seed_urls):
         process.crawl(WebScraper, id=idx, start_urls=url_list, allowed_domains=['wikipedia.org'])

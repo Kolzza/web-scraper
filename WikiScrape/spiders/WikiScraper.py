@@ -1,4 +1,5 @@
 import scrapy
+import os
 
 class WebScraper(scrapy.Spider):
     name="wikipedia"

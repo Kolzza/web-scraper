@@ -17,7 +17,7 @@ else
 fi
 
 if [ ! -d "$4" ]; then
-    echo "Directory $4 not found!"
+    echo "Output directory not found!"
     echo "Creating $4/"
     mkdir -p $4
 fi

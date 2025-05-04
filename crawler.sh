@@ -23,5 +23,12 @@ if [ ! -d "$4" ]; then
 fi
 
 echo "Starting Crawler..."
-# python3 WikiScrape/main.py
+python3 WikiScrape/main.py $1 $2 $3 $4
+exit_code=$?
+
+if [ $exit_code -ne 0 ]; then
+    echo "Python script failed with exit code $exit_code"
+    exit $exit_code
+fi
+
 echo "Completed!"

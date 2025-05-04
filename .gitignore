@@ -1,2 +1,3 @@
 .venv
 /WikiScrape/WikiScrape/out
+*.pyc

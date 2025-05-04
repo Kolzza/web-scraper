@@ -1,7 +1,7 @@
 from spiders.WikiScraper import WebScraper
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
-from config import LOGGING, LOG_LEVEL, SPIDER_COUNT
+from config import LOGGING, LOG_LEVEL, SPIDER_COUNT, WHITELIST
 from utils import get_arguments, read_seed_urls, split_list
 
 
@@ -18,7 +18,7 @@ def main():
 
     process = CrawlerProcess(settings)
     for idx, url_list in enumerate(seed_urls):
-        process.crawl(WebScraper, id=idx, start_urls=url_list, allowed_domains=['wikipedia.org'])
+        process.crawl(WebScraper, id=idx, start_urls=url_list, allowed_domains=WHITELIST)
     process.start()
 
 

@@ -1,11 +1,9 @@
 from spiders.WikiScraper import WebScraper
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+from config import LOGGING, LOG_LEVEL, SPIDER_COUNT
 import sys
 
-SPIDER_COUNT = 2
-LOGGING=False
-LOG_LEVEL="INFO"
 
 def get_arguments():
     try:

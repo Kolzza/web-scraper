@@ -1,5 +1,5 @@
 import scrapy
-import os
+
 
 class WebScraper(scrapy.Spider):
     name="wikipedia"
@@ -31,7 +31,3 @@ class WebScraper(scrapy.Spider):
         while self.url_queue:
             next_url = self.url_queue.pop(0)
             yield scrapy.Request(url=next_url, callback=self.parse)
-
-
-        
-    

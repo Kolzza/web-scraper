@@ -1,3 +1,8 @@
 .venv
-/WikiScrape/WikiScrape/out
+
+**/out
+
+__pycache__
 *.pyc
+
+.DS_Store

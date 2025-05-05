@@ -18,8 +18,9 @@ class WebScraper(scrapy.Spider):
         }
 
         for link in response.css('div.mw-parser-output a::attr(href)'):
-            if link.startswith('/wiki/') and ':' not in link:
-                full_url = response.urljoin(link)
+            href = link.get()
+            if href and href.startswith('/wiki/') and ':' not in href:
+                full_url = response.urljoin(href)
                 if full_url not in self.visited:
                     print("Yielding", full_url)
                     yield scrapy.Request(url=full_url, callback=self.parse)

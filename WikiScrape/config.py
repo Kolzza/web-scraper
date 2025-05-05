@@ -1,9 +1,9 @@
 # Toggle Spider logging to terminal
-LOGGING="False"
+LOGGING="True"
 
 # Change Log Level
 # CRITICAL, ERROR, WARNING, INFO, DEBUG
-LOG_LEVEL="INFO"
+LOG_LEVEL="DEBUG"
 
 # Number of spiders to spawn
 SPIDER_COUNT=2

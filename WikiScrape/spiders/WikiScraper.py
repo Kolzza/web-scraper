@@ -20,5 +20,5 @@ class WebScraper(scrapy.Spider):
             if link.startswith('/wiki/') and ':' not in link:
                 full_url = response.urljoin(link)
                 if full_url not in self.visited:
-                    print("Yielding", full_url)
+                    self.logger.info(f"Discovered link: {full_url}")
                     yield scrapy.Request(url=full_url, callback=self.parse)

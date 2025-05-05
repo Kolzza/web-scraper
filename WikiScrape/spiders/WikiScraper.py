@@ -6,9 +6,14 @@ class WebScraper(scrapy.Spider):
     visited=set()
 
     def parse(self, response):
+        url = response.url
+        if url in self.visited:
+            return
+        self.visited.add(url)
+        
         yield { 
             'body': response.body,
-            'url': response.url 
+            'url': url
         }
 
         for link in response.css('div.mw-parser-output a::attr(href)'):

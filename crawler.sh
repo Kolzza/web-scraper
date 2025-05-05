@@ -31,4 +31,6 @@ if [ $exit_code -ne 0 ]; then
     exit $exit_code
 fi
 
-echo "Completed!"
+size=$(du -sh "$4" | cut -f1)
+echo "Finished Scraping!"
+echo "Collected $size of data"

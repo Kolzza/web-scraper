@@ -22,8 +22,10 @@ if [ ! -d "$4" ]; then
     mkdir -p $4
 fi
 
-echo "Starting Crawler..."
+echo "Crawling..."
+start_time=$(date +%s)
 python3 WikiScrape/main.py $1 $2 $3 $4
+end_time=$(date +%s)
 exit_code=$?
 
 if [ $exit_code -ne 0 ]; then
@@ -31,6 +33,11 @@ if [ $exit_code -ne 0 ]; then
     exit $exit_code
 fi
 
-size=$(du -sh "$4" | cut -f1)
-echo "Finished Scraping!"
-echo "Collected $size of data"
+size=$(du -sh "$4" | cut -f1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+count=$(ls -1 "$4" | wc -l | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+duration=$(echo "$end_time - $start_time" | bc)
+throughput=$(echo "$count / $duration" | bc -l | xargs printf "%.2f")
+
+echo "Finished in $duration seconds!"
+echo "Collected $size of data across $count files"
+echo "Scraping throughput: $throughput files per second"

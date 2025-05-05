@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "Installing Dependencies..."
-pip -q install --upgrade pip
-pip -q install -r requirements.txt
-
 if [ "$#" -ne 4 ]; then
     echo "Usage: $0 <Seed File> <Number of Pages> <Max Hops> <Output Directory>"
     exit 1
 fi
+
+echo "Installing Dependencies..."
+pip -q install --upgrade pip
+pip -q install -r requirements.txt
 
 if [ -f "$1" ]; then
     echo "Reading Seed URLs from $1..."

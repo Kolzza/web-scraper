@@ -1,5 +1,5 @@
 # Toggle Spider logging to terminal
-LOGGING="True"
+LOGGING="False"
 
 # Change Log Level
 # CRITICAL, ERROR, WARNING, INFO, DEBUG

@@ -14,7 +14,7 @@
    ```
    or `crawler.bat` on Windows
    ```
-   .\crawler.sh <Seed File> <File Limit> <Max Hops> <Output Directory>
+   .\crawler.bat <Seed File> <File Limit> <Max Hops> <Output Directory>
    ```
 
 ## Advanced Configuration

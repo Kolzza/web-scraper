@@ -16,10 +16,9 @@ class WebScraper(scrapy.Spider):
             'url': response.url 
         }
 
-        for link in response.css('div.mw-parser-output ul li a'):
-            text = link.css('::text').get()
-            href = link.css('::attr(href)').get()
-            if text and href:
+        for link in response.css('div.mw-parser-output a::attr(href)'):
+            href = link.get()
+            if href and '#' not in href and ":" not in href:
                 full_url = response.urljoin(href)
                 if full_url not in WebScraper.visited:
                     self.url_queue.append(full_url)

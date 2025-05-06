@@ -1,16 +1,20 @@
 # cs172
 
 ## Quick Start
-1. Create a text file with your seed URLs, for example: `seeds.txt`.
+1. Create a text file with your seed URLs, or modify `seeds.txt`
    ```
    https://en.wikipedia.org/wiki/List_of_search_engines
    https://en.wikipedia.org/wiki/Volcano
    ...
    ```
 
-2. Run the `crawler.sh` script.
+2. Run the `crawler.sh` script
    ```
    ./crawler.sh <Seed File> <File Limit> <Max Hops> <Output Directory>
+   ```
+   or `crawler.bat` on Windows
+   ```
+   .\crawler.sh <Seed File> <File Limit> <Max Hops> <Output Directory>
    ```
 
 ## Advanced Configuration
@@ -37,4 +41,4 @@ Limit crawling to specific domains. An empty list disables filtering.
 ```
 WHITELIST=['wikipedia.org']
 ```
-For deeper customization, edit `WikiScrape/settings.py`. See the [Scrapy settings guide](https://docs.scrapy.org/en/latest/topics/settings.html) for full details.
+For further customization, edit `WikiScrape/settings.py`. See the [Scrapy settings guide](https://docs.scrapy.org/en/latest/topics/settings.html) for full details.

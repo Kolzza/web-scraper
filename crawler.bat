@@ -23,7 +23,7 @@ if not exist "%~4" (
 )
 
 echo Crawling...
-for /f "delims=" %%a in ('powershell -command "(Get-Date).ToString('yyyy-MM-dd HH:mm:ss')"') do set start_time=%%a
+for /f "delims=" %%a in ('powershell -command "[int](Get-Date -UFormat %%s)"') do set start_time=%%a
 
 python WikiScrape\main.py "%~1" "%~2" "%~3" "%~4"
 set exit_code=%ERRORLEVEL%
@@ -36,10 +36,14 @@ if %exit_code% neq 0 (
 for /f "tokens=*" %%a in ('dir /s /a /b "%~4" ^| find /c /v ""') do set count=%%a
 for /f "tokens=*" %%b in ('dir /s /a /b "%~4" ^| findstr /v "^$"') do set size=%%~zb
 
-for /f "delims=" %%a in ('powershell -command "(Get-Date).ToString('yyyy-MM-dd HH:mm:ss')"') do set end_time=%%a
+for /f "delims=" %%a in ('powershell -command "[int](Get-Date -UFormat %%s)"') do set end_time=%%a
 
 set /a duration=%end_time% - %start_time%
-set /a throughput=%count% / %duration%
+if %duration% gtr 0 (
+    set /a throughput=%count% / %duration%
+) else (
+    set throughput=0
+)
 
 echo Finished in %duration% seconds!
 echo Collected %size% bytes of data across %count% files
